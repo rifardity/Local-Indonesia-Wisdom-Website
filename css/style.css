@@ -405,8 +405,17 @@ footer p {
 }
 
 /* Large Devices, Wide Screens */
+@media only screen and (min-width: 1920px) {
+	.header-body{
+		margin: 5% 0;
+	}
+}
+@media only screen and (min-width: 1600px) and (max-width:1919px) {
+	.header-body{
+		margin: 7% 0;
+	}
+}
 
-@media only screen and (max-width: 1200px) {}
 /* Medium Devices, Desktops */
 
 @media only screen and (max-width: 992px) {
@@ -456,6 +465,7 @@ footer p {
 		padding-top: 20%;
 	}
 }
+
 /* Small Devices, Tablets */
 
 @media only screen and (max-width: 768px) {
@@ -617,9 +627,4 @@ footer p {
 	.footer-copyright p {
 		text-align: center;
 	}
-}
-/* Extra Small Devices, Phones */
-@media only screen and (max-width: 480px) {
-
-
 }

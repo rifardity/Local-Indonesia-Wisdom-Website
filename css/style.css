@@ -628,3 +628,52 @@ footer p {
 		text-align: center;
 	}
 }
+
+
+/*PAGE INTRO*/
+.navbar-fixed-left {
+	background-color: #ca0016;
+overflow: hidden;
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+width: 140px;
+z-index: 10;
+}
+
+.navbar-nav {
+	padding-top: 50px;
+}
+
+.wrapper{
+	margin-left: 140px;
+}
+
+.intro-content{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 2670px;
+	height: 3532px;
+	z-index: 1;
+	background-color: #f0f0f0;
+}
+.intro-content-item{
+	position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+}
+#surabaya{
+	top: 125px;
+	left: 170px;
+	width: 460px;
+}
+
+#bandung{
+	top: 300px;
+	left: 1120px;
+	width: 460px;
+}

@@ -78,7 +78,7 @@
   </header>
   <div class="trans-div"></div>
   <div class="section section-container">
-    <div class="row menu-bar" id="menu-bar">
+    <div class="row menu-bar">
       <div class="navbar-header">
         <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
           <span class="sr-only">Toggle navigation</span>
@@ -90,7 +90,7 @@
           <img class="img-responsive" src="img/logo-small.png">
         </a>
       </div>
-      <div class="navbar-collapse collapse">
+      <div class="navbar-collapse collapse" id="menu-bar">
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="#section-tourism">Tourism</a>
@@ -110,7 +110,7 @@
         </ul>
       </div>
     </div>
-    <section class="section" id="section-tourism">
+    <section class="section">
       <div class="section-tourism-banner">
         <h3>Wonderfull Indonesia</h3>
       </div>
@@ -134,7 +134,7 @@
         </div>
       </div>
     </section>
-    <section class="section-info">
+    <section class="section-info" id="section-tourism">
       <h2>Statistics of Indonesia's General Information</h2>
       <div class="container">
         <div class="row">
@@ -445,20 +445,16 @@
         }, 1000);
       });
 
-      num = $('.section-info').offset().top;
+      num = $('#section-tourism').offset().top;
       $(window).bind('scroll', function() {
         if ($(window).scrollTop() > num) {
           $('.menu-bar').addClass('fixed-menu');
           $('.menu-bar').fadeIn("slow");
         } else {
-          num = $('.section-info').offset().top;
+          num = $('#section-tourism').offset().top;
           $('.menu-bar').fadeOut("slow");
         }
       });
-      $("#menu-bar li a").click(function() {
-        $(this).parent().addClass('onposition').siblings().removeClass('onposition');
-
-    });
 
       $(".owl-carousel").owlCarousel({
         margin: 5,
@@ -491,7 +487,45 @@
       $('.progress .progress-bar').css("width", function() {
         return $(this).attr("aria-valuenow") + "%";
       });
+      $(document).on("scroll", onScroll);
+
+    //smoothscroll
+    $('a[href^="#"]').on('click', function (e) {
+        e.preventDefault();
+        $(document).off("scroll");
+
+        $('a').each(function () {
+            $(this).parent().removeClass('onposition');
+        })
+        $(this).parent().addClass('onposition');
+
+        var target = this.hash,
+            menu = target;
+        $target = $(target);
+        $('html, body').stop().animate({
+            'scrollTop': $target.offset().top+2
+        }, 500, 'swing', function () {
+            window.location.hash = target;
+            $(document).on("scroll", onScroll);
+        });
     });
+    });
+
+    function onScroll(event){
+        var scrollPos = $(document).scrollTop();
+        $('#menu-bar a').each(function () {
+            var currLink = $(this);
+            var refElement = $(currLink.attr("href"));
+            if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+                $('#menu-bar ul li').removeClass("onposition");
+                currLink.parent().addClass("onposition");
+            }
+            else{
+                currLink.parent().removeClass("onposition");
+            }
+        });
+    }
+
   </script>
 
 </body>
